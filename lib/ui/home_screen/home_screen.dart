@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
+import 'package:workshop_2/theme/app_colors.dart';
+
+import '../../theme/text_styles.dart';
+import '../widgets/medicament_card.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -37,26 +40,29 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(
               height: 70,
             ),
-            const Text(
+            Text(
               "Hi Hamed",
-              style: const TextStyle(fontSize: 20),
+              style: subHeadTitle,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Welcome Back",
+              style: headTitle,
             ),
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              "Welcome Back",
-              style: const TextStyle(fontSize: 30),
+            Text(
+              "Today is",
+              style: body,
             ),
             const SizedBox(
-              height: 40,
-            ),
-            const Text("Today is"),
-            const SizedBox(
-              height: 30,
+              height: 20,
             ),
             SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
@@ -74,25 +80,55 @@ class _MyHomePageState extends State<MyHomePage> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: currentIndex == index
-                                ? Colors.red
-                                : Colors.grey,
+                                ? AppColors.purple
+                                : AppColors.cardsColor,
                           ),
-                          child: Center(child: Text(days[index])),
+                          child: Center(
+                              child: Text(days[index],
+                                  style: body.copyWith(
+                                    color: AppColors.textColor,
+                                  ))),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text(
-              days[currentIndex],
+            Text("My medications for today", style: subHeadTitle),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    ...List.generate(
+                        10,
+                        (index) => Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "10:00",
+                                    style: subHeadTitle,
+                                  ),
+                                  const MedicamentCard(),
+                                ],
+                              ),
+                            ))
+                  ],
+                ),
+              ),
             )
           ],
         ),
