@@ -9,6 +9,8 @@ class MedicamentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // we didn't talk about responsivity so i used static values but we can use
+      //MediaQuery.of(context).size.height* 0.1 ( for example , percentage of screen ) and same for the width
       height: 90,
       width: 300,
       decoration: BoxDecoration(
